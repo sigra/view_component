@@ -229,6 +229,14 @@ class RenderingTest < ViewComponent::TestCase
     end
   end
 
+  def test_renders_variant_when_default_template_is_not_present
+    with_variant :variant do
+      render_inline(VariantComponentWithoutDefaultTemplate.new)
+
+      assert_text("Variant")
+    end
+  end
+
   def test_renders_erb_template
     render_inline(ErbComponent.new(message: "bar")) { "foo" }
 
